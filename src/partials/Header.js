@@ -75,7 +75,7 @@ function Header() {
     useEffect(() => {
         if (wallet.status === 'connected') {
             console.log('wallet', wallet.chainId)
-            if (wallet.chainId === 97){
+            if (wallet.chainId === 97) {
                 toastr.success('Congratulation!', "Wallet connected")
             } else {
                 toastr.warning('Warning', 'Please change your wallet network to BSC Testnet!')
@@ -179,24 +179,31 @@ function Header() {
                         {/* Desktop CTA on the right */}
                         <ul className="flex justify-end flex-wrap items-center">
 
-                            {address ? location && location.pathname === '/dashboard' ? <button onClick={() => onReset()} className="btn-sm text-white bg-teal-500 hover:bg-teal-400 ml-6">
-                                    {address}
-                                </button> : <li>
-                                    <a href="/dashboard"
-                                       className="btn-sm text-white bg-teal-500 hover:bg-teal-400 ml-6">Launch
-                                        App <svg className="fill-current text-white ml-2 mt-0.5 flex-shrink-0"
-                                                 width="12" height="12">
-                                            <svg className="sq sf a_ cy ow rg ig" viewBox="0 0 12 12"
-                                                 xmlns="http://www.w3.org/2000/svg">
-                                                <path
-                                                    d="M11.707 5.293L7 .586 5.586 2l3 3H0v2h8.586l-3 3L7 11.414l4.707-4.707a1 1 0 000-1.414z"
-                                                    fill-rule="nonzero"></path>
-                                            </svg>
-                                        </svg></a>
-                                    {/*<button onClick={() => onReset()}*/}
-                                    {/*        className="btn-sm text-white bg-teal-500 hover:bg-teal-400 ml-6">Disconnect*/}
-                                    {/*</button>*/}
-                                </li>
+                            {address ? location && location.pathname === '/dashboard' ?
+                                    <button onClick={() => onReset()}
+                                            className="btn-sm text-white bg-teal-500  hover:bg-teal-400 ml-6" style={{
+                                        overflow: 'hidden',
+                                        textOverflow: 'ellipsis',
+                                        width: '10rem',
+                                        whiteSpace: 'nowrap'
+                                    }}>
+                                        {address.substr(0, 5)}...{address.substr(address.length - 5, address.length - 1)}
+                                    </button> : <li>
+                                        <a href="/dashboard"
+                                           className="btn-sm text-white bg-teal-500 hover:bg-teal-400 ml-6">Launch
+                                            App <svg className="fill-current text-white ml-2 mt-0.5 flex-shrink-0"
+                                                     width="12" height="12">
+                                                <svg className="sq sf a_ cy ow rg ig" viewBox="0 0 12 12"
+                                                     xmlns="http://www.w3.org/2000/svg">
+                                                    <path
+                                                        d="M11.707 5.293L7 .586 5.586 2l3 3H0v2h8.586l-3 3L7 11.414l4.707-4.707a1 1 0 000-1.414z"
+                                                        fill-rule="nonzero"></path>
+                                                </svg>
+                                            </svg></a>
+                                        {/*<button onClick={() => onReset()}*/}
+                                        {/*        className="btn-sm text-white bg-teal-500 hover:bg-teal-400 ml-6">Disconnect*/}
+                                        {/*</button>*/}
+                                    </li>
                                 :
                                 <li>
                                     <button onClick={() => onConnect()}
@@ -322,17 +329,54 @@ function Header() {
                                                 <span className="mt-1">Github</span></a>
                                         </li>
 
-                                        <li>
-                                            {wallet.status === 'connected' ? (
-                                                <a href="/dashboard"
-                                                   className="font-medium w-full inline-flex items-center justify-center border border-transparent px-4 py-2 my-2 rounded text-white bg-teal-500 hover:bg-teal-400 transition duration-150 ease-in-out">Launch
-                                                    App</a>
-                                            ) : (
-                                                <button onClick={() => wallet.connect()}
-                                                        className="font-medium w-full inline-flex items-center justify-center border border-transparent px-4 py-2 my-2 rounded text-white bg-teal-500 hover:bg-teal-400 transition duration-150 ease-in-out">Launch
-                                                    App</button>
-                                            )}
-                                        </li>
+
+                                        {address ? location && location.pathname === '/dashboard' ?
+                                                <button onClick={() => onReset()}
+                                                        className="btn-sm text-white bg-teal-500  hover:bg-teal-400 ml-6"
+                                                        style={{
+                                                            overflow: 'hidden',
+                                                            textOverflow: 'ellipsis',
+                                                            width: '10rem',
+                                                            whiteSpace: 'nowrap'
+                                                        }}>
+                                                    {address.substr(0, 5)}...{address.substr(address.length - 5, address.length - 1)}
+                                                </button> : <li>
+                                                    <a href="/dashboard"
+                                                       className="btn-sm text-white bg-teal-500 hover:bg-teal-400 ml-6">Launch
+                                                        App <svg
+                                                            className="fill-current text-white ml-2 mt-0.5 flex-shrink-0"
+                                                            width="12" height="12">
+                                                            <svg className="sq sf a_ cy ow rg ig" viewBox="0 0 12 12"
+                                                                 xmlns="http://www.w3.org/2000/svg">
+                                                                <path
+                                                                    d="M11.707 5.293L7 .586 5.586 2l3 3H0v2h8.586l-3 3L7 11.414l4.707-4.707a1 1 0 000-1.414z"
+                                                                    fill-rule="nonzero"></path>
+                                                            </svg>
+                                                        </svg></a>
+                                                    {/*<button onClick={() => onReset()}*/}
+                                                    {/*        className="btn-sm text-white bg-teal-500 hover:bg-teal-400 ml-6">Disconnect*/}
+                                                    {/*</button>*/}
+                                                </li>
+                                            :
+                                            <li>
+                                                <button onClick={() => onConnect()}
+                                                        className="btn-sm text-white bg-teal-500 hover:bg-teal-400 ml-6">
+                                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                                         className="icon icon-tabler icon-tabler-wallet" width="24"
+                                                         height="24"
+                                                         viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                                         fill="none"
+                                                         stroke-linecap="round" stroke-linejoin="round">
+                                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                                        <path
+                                                            d="M17 8v-3a1 1 0 0 0 -1 -1h-10a2 2 0 0 0 0 4h12a1 1 0 0 1 1 1v3m0 4v3a1 1 0 0 1 -1 1h-12a2 2 0 0 1 -2 -2v-12"></path>
+                                                        <path d="M20 12v4h-4a2 2 0 0 1 0 -4h4"></path>
+                                                    </svg>
+                                                    Wallet Connect
+                                                </button>
+                                            </li>
+                                        }
+
                                     </ul>
                                 </div>
                             </nav>

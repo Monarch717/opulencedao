@@ -10,6 +10,13 @@
     }
 }
 
+.gradient {
+    background-image: linear-gradient(135deg,#3abab4,#55dbd4 50%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
 // Hamburger button
 .hamburger {
 
@@ -34,7 +41,7 @@
 
         &:nth-child(3) {
             transition: y 0.075s 0.12s ease, transform 0.075s cubic-bezier(0.55, 0.055, 0.675, 0.19);
-        }        
+        }
     }
 
     &.active {
@@ -47,13 +54,13 @@
                 y: 11;
                 transition: y 0.075s ease, opacity 0.075s 0.12s ease, transform 0.075s 0.12s cubic-bezier(0.215, 0.61, 0.355, 1);
             }
-    
+
             &:nth-child(2) {
                 transform: rotate(45deg);
                 transition-delay: 0.12s;
                 transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
             }
-    
+
             &:nth-child(3) {
                 y: 11;
                 transform: rotate(-45deg);
@@ -73,10 +80,10 @@
 
             > span:first-child {
 
-                .dark & {        
+                .dark & {
                     left: 22px;
                 }
-            }                      
+            }
         }
     }
 }
@@ -96,7 +103,7 @@
 
         > div > div {
             @apply opacity-0;
-        }        
+        }
 
         &.swiper-slide-active,
         &.swiper-slide-duplicate-active {
@@ -127,7 +134,7 @@ $tags-animation-duration: 30000ms;
 }
 
 .tags-1 {
-    animation-delay: $tags-animation-duration * -0.1; // -0.1 will make the tag move 76px right (i.e. 768px container size * -0.1) 
+    animation-delay: $tags-animation-duration * -0.1; // -0.1 will make the tag move 76px right (i.e. 768px container size * -0.1)
 }
 
 .tags-2 {
@@ -167,11 +174,11 @@ $tags-animation-duration: 30000ms;
 }
 
 @keyframes tagsmove {
-  from {
-    transform: translateX(-100%);
-  }
+    from {
+        transform: translateX(-100%);
+    }
 
-  to {
-    transform: translateX(768px);
-  }
+    to {
+        transform: translateX(768px);
+    }
 }

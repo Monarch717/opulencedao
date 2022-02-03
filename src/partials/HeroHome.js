@@ -11,8 +11,14 @@ function HeroHome() {
 
     const onCreateNode = () => {
         if (wallet.status !== "connected") {
-            wallet.connect();
+            wallet.connect()
+                .then(() => {
+                    history.push('/dashboard')
+                });
+        } else {
+            history.push('/dashboard')
         }
+
     }
 
     useEffect(() => {
@@ -21,7 +27,7 @@ function HeroHome() {
                 address: wallet.account,
                 amount: wallet.balance
             }))
-            history.push('/dashboard')
+            // history.push('/dashboard')
         }
     }, [wallet.status])
 
