@@ -24,6 +24,7 @@ import {Provider} from "react-redux";
 import store from './store';
 import {PersistGate} from 'redux-persist/integration/react';
 import persistStore from 'redux-persist/es/persistStore';
+import ReduxToastr from "react-redux-toastr";
 
 const persistor = persistStore(store)
 
@@ -49,6 +50,16 @@ function App() {
     return (
         <Provider store={store}>
             <PersistGate persistor={persistor} loading={<p>Wait...</p>}>
+                <ReduxToastr
+                    timeout={2000}
+                    newestOnTop={false}
+                    preventDuplicates
+                    position={"top-left"}
+                    getState={(state: any) => state.toastr}
+                    transitionIn="fadeIn"
+                    transitionOut="fadeOut"
+                    progressBar
+                    closeOnToastrClick />
                 <UseWalletProvider connectors={{bsc}}>
                     <>
                         <Switch>

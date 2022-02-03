@@ -4,6 +4,7 @@ import {Link, useLocation} from 'react-router-dom';
 import Transition from '../utils/Transition.js';
 import {useWallet} from "use-wallet";
 import {setWallet} from "../slices/app";
+import {toastr} from "react-redux-toastr"
 
 function Header() {
 
@@ -73,7 +74,12 @@ function Header() {
 
     useEffect(() => {
         if (wallet.status === 'connected') {
-            console.log('wallet', wallet)
+            console.log('wallet', wallet.chainId)
+            if (wallet.chainId === 97){
+                toastr.success('Congratulation!', "Wallet connected")
+            } else {
+                toastr.warning('Warning', 'Please change your wallet network to BSC Testnet!')
+            }
             dispatch(setWallet({
                 address: wallet.account,
                 amount: wallet.balance
@@ -173,9 +179,9 @@ function Header() {
                         {/* Desktop CTA on the right */}
                         <ul className="flex justify-end flex-wrap items-center">
 
-                            {address ? location && location.pathname === '/dashboard' ? <a className="btn-sm text-white bg-teal-500 hover:bg-teal-400 ml-6">
+                            {address ? location && location.pathname === '/dashboard' ? <button onClick={() => onReset()} className="btn-sm text-white bg-teal-500 hover:bg-teal-400 ml-6">
                                     {address}
-                                </a> : <li>
+                                </button> : <li>
                                     <a href="/dashboard"
                                        className="btn-sm text-white bg-teal-500 hover:bg-teal-400 ml-6">Launch
                                         App <svg className="fill-current text-white ml-2 mt-0.5 flex-shrink-0"
@@ -187,9 +193,9 @@ function Header() {
                                                     fill-rule="nonzero"></path>
                                             </svg>
                                         </svg></a>
-                                    <button onClick={() => onReset()}
-                                            className="btn-sm text-white bg-teal-500 hover:bg-teal-400 ml-6">Disconnect
-                                    </button>
+                                    {/*<button onClick={() => onReset()}*/}
+                                    {/*        className="btn-sm text-white bg-teal-500 hover:bg-teal-400 ml-6">Disconnect*/}
+                                    {/*</button>*/}
                                 </li>
                                 :
                                 <li>

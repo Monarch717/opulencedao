@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from "react-router-dom";
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import 'react-redux-toastr/lib/css/react-redux-toastr.min.css'
 
 ReactDOM.render(
   <React.StrictMode>
